@@ -51,6 +51,8 @@ const docsToOrders = (
       user,
       status,
       createdAt,
+      name,
+      phone,
     } = doc.data();
     orders.push({
       id: doc.id,
@@ -71,6 +73,8 @@ const docsToOrders = (
       atendimento,
       user,
       status,
+      name,
+      phone,
       createdAt: createdAt.toDate().toISOString(),
     });
   });

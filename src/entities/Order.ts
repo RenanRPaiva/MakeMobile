@@ -21,4 +21,6 @@ export type Order = {
   makeValue: number;
   status: OrderStatus;
   createdAt: string;
+  name: string;
+  phone: string;
 };
