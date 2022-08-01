@@ -54,7 +54,11 @@ export const selectAcceptedOrders = (state: RootState) =>
   state.orders.orders.filter(order => order.status === OrderStatus.ACCEPTED);
 
 export const selectFinishedOrders = (state: RootState) =>
-  state.orders.orders.filter(order => order.status === OrderStatus.FINISHED);
+  state.orders.orders.filter(
+    order =>
+      order.status === OrderStatus.FINISHED ||
+      order.status === OrderStatus.REJECTED,
+  );
 
 export const selectloadOrderInfo = (state: RootState) => ({
   status: state.orders.status,

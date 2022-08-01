@@ -5,6 +5,9 @@ import {Linking, TouchableOpacity, View} from 'react-native';
 import styled from 'styled-components/native';
 import {Order} from '../../entities/Order';
 import {CustomText} from '../CustomText';
+import {OrderStatus} from '../../entities/OrderStatus';
+import {faCheckCircle} from '@fortawesome/free-solid-svg-icons/faCheckCircle';
+import {faCircleXmark} from '@fortawesome/free-solid-svg-icons/faCircleXmark';
 
 type Props = {
   order: Order;
@@ -44,7 +47,7 @@ export function OrderDetails({order, showService = false}: Props) {
                     `https://api.whatsapp.com/send/?phone=55${order.phone}`,
                   );
                 }}>
-                <FontAwesomeIcon icon={faWhatsapp} color="#128c7e" />
+                <FontAwesomeIcon icon={faWhatsapp} color="#128c7e" size={25} />
               </TouchableOpacity>
             </SmallTextStyled>
           </LinhaWrapStyled>
@@ -76,12 +79,28 @@ export function OrderDetails({order, showService = false}: Props) {
               </SmallTextStyled>
             </LinhaWrapStyled>
           </LinhaWrapStyled>
-          <LinhaWrapStyled>
+          <LinhaValor>
             <View>
               <ValorTextStyled>Valor</ValorTextStyled>
               <ValorTextStyled bold>R$ {order.makeValue}</ValorTextStyled>
             </View>
-          </LinhaWrapStyled>
+            <ViewIconStyled>
+              {(order.status === OrderStatus.FINISHED && (
+                <FontAwesomeIcon
+                  icon={faCheckCircle}
+                  color="#128c7e"
+                  size={25}
+                />
+              )) ||
+                (order.status === OrderStatus.REJECTED && (
+                  <FontAwesomeIcon
+                    icon={faCircleXmark}
+                    color="#f00"
+                    size={25}
+                  />
+                ))}
+            </ViewIconStyled>
+          </LinhaValor>
         </>
       )}
     </>
@@ -107,4 +126,16 @@ const LinhaWrapStyled = styled.View`
 const ValorTextStyled = styled(CustomText)`
   font-size: 12px;
   text-align: center;
+`;
+
+const LinhaValor = styled.View`
+  border-top-color: #e1e1e1;
+  border-top-width: 1px;
+  margin-top: 5px;
+  flex-direction: row;
+  justify-content: space-around;
+`;
+
+const ViewIconStyled = styled.View`
+  margin-top: 15px;
 `;

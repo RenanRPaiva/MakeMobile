@@ -23,4 +23,5 @@ export type Order = {
   createdAt: string;
   name: string;
   phone: string;
+  make: string;
 };

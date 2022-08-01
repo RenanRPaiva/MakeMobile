@@ -53,6 +53,7 @@ const docsToOrders = (
       createdAt,
       name,
       phone,
+      make,
     } = doc.data();
     orders.push({
       id: doc.id,
@@ -76,6 +77,7 @@ const docsToOrders = (
       name,
       phone,
       createdAt: createdAt.toDate().toISOString(),
+      make,
     });
   });
   return orders;
