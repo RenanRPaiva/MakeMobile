@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {FlatList, StyleSheet} from 'react-native';
 import {useSelector} from 'react-redux';
 import {LoadingStatus} from '../../entities/LoadingStatus';
 import {Order} from '../../entities/Order';
@@ -28,13 +28,13 @@ export function OrdersList({orders, noOrdersMessage}: Props) {
     );
   }
   return (
-    <Container padding>
+    <Container>
       {orders.length > 0 ? (
-        <>
-          {orders.map(order => (
-            <OrderCard key={order.id} order={order} />
-          ))}
-        </>
+        <FlatList
+          data={orders}
+          renderItem={({item}) => <OrderCard order={item} />}
+          contentContainerStyle={styles.wrap}
+        />
       ) : (
         <CustomText style={styles.noOrder}>{noOrdersMessage}</CustomText>
       )}
@@ -47,5 +47,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     marginTop: 16,
+  },
+  wrap: {
+    padding: 16,
   },
 });
