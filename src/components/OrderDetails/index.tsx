@@ -22,18 +22,17 @@ export function OrderDetails({order, showService = false}: Props) {
       <SmallTextStyled bold>
         Nome: <SmallTextStyled>{order.name}</SmallTextStyled>
       </SmallTextStyled>
-
       <SmallTextStyled bold>
         Data e hora que precisa estar pronta:
       </SmallTextStyled>
-      <SmallTextStyled>
+      <CustomText>
         <SmallTextStyled bold>
           Data:{'  '} <SmallTextStyled>{order.date} </SmallTextStyled>
         </SmallTextStyled>
         <SmallTextStyled bold>
           Hora: <SmallTextStyled>{order.hours} </SmallTextStyled>
         </SmallTextStyled>
-      </SmallTextStyled>
+      </CustomText>
       {showService && (
         <>
           <LinhaWrapStyled>
@@ -45,7 +44,7 @@ export function OrderDetails({order, showService = false}: Props) {
                     `https://api.whatsapp.com/send/?phone=55${order.phone}`,
                   );
                 }}>
-                <IconStyled icon={faWhatsapp} color="#128c7e" />
+                <FontAwesomeIcon icon={faWhatsapp} color="#128c7e" />
               </TouchableOpacity>
             </SmallTextStyled>
           </LinhaWrapStyled>
@@ -58,34 +57,29 @@ export function OrderDetails({order, showService = false}: Props) {
               <CustomText bold>Ponto de Referencia:</CustomText> {order.coments}
             </SmallTextStyled>
             <LinhaWrapStyled>
-              <SmallTextStyled bold>
-                Serviços Contratados:{' '}
-                <SmallTextStyled>
-                  {order.maquiagem !== 0
-                    ? `Maquiagem: ${order.maquiagem}  `
-                    : ''}
-                  {order.penteado !== 0 ? `Penteado: ${order.penteado}  ` : ''}
-                  {order.pacoteMc !== 0
-                    ? `Pacote: Maquiagem + Cachos: ${order.pacoteMc}  `
-                    : ''}
-                  {order.pacoteMp !== 0
-                    ? `Pacote: Maquiagem + Penteado: ${order.pacoteMp}  `
-                    : ''}
-                  {order.pacoteNoiva !== 0
-                    ? `Pacote: Noiva/Debutante Maquiagem + Penteado: ${order.pacoteNoiva}  `
-                    : ''}
-                  {order.atendimento !== 0
-                    ? `Atendimento em festa: ${order.atendimento}  `
-                    : ''}
-                </SmallTextStyled>
+              <SmallTextStyled bold>Serviços Contratados:</SmallTextStyled>
+              <SmallTextStyled>
+                {order.maquiagem !== 0 ? `Maquiagem: ${order.maquiagem}  ` : ''}
+                {order.penteado !== 0 ? `Penteado: ${order.penteado}  ` : ''}
+                {order.pacoteMc !== 0
+                  ? `Pacote: Maquiagem + Cachos: ${order.pacoteMc}  `
+                  : ''}
+                {order.pacoteMp !== 0
+                  ? `Pacote: Maquiagem + Penteado: ${order.pacoteMp}  `
+                  : ''}
+                {order.pacoteNoiva !== 0
+                  ? `Pacote: Noiva/Debutante Maquiagem + Penteado: ${order.pacoteNoiva}  `
+                  : ''}
+                {order.atendimento !== 0
+                  ? `Atendimento em festa: ${order.atendimento}  `
+                  : ''}
               </SmallTextStyled>
             </LinhaWrapStyled>
           </LinhaWrapStyled>
-
           <LinhaWrapStyled>
             <View>
               <ValorTextStyled>Valor</ValorTextStyled>
-              <ValorTextStyled bold>{order.makeValue}</ValorTextStyled>
+              <ValorTextStyled bold>R$ {order.makeValue}</ValorTextStyled>
             </View>
           </LinhaWrapStyled>
         </>
@@ -95,7 +89,7 @@ export function OrderDetails({order, showService = false}: Props) {
 }
 
 const IdStyled = styled(CustomText)`
-  font-size: 16;
+  font-size: 16px;
   margin-bottom: 5px;
 `;
 
@@ -113,8 +107,4 @@ const LinhaWrapStyled = styled.View`
 const ValorTextStyled = styled(CustomText)`
   font-size: 12px;
   text-align: center;
-`;
-
-const IconStyled = styled(FontAwesomeIcon)`
-  padding: 10px;
 `;

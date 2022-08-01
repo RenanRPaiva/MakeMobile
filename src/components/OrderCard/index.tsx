@@ -1,22 +1,31 @@
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons/faChevronRight';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import React from 'react';
+import React, {useState} from 'react';
 import {Order} from '../../entities/Order';
 import styled from 'styled-components/native';
 import {OrderDetails} from '../OrderDetails';
+import {OrderModal} from '../OrderModal';
 
 type Props = {
   order: Order;
 };
 
 export function OrderCard({order}: Props) {
+  const [visible, setVisible] = useState(false);
   return (
-    <WrapStyled onPress={() => alert('Oi')}>
-      <InfoWrapStyled>
-        <OrderDetails order={order} showService />
-      </InfoWrapStyled>
-      <FontAwesomeIcon icon={faChevronRight} size={14} />
-    </WrapStyled>
+    <>
+      <WrapStyled onPress={() => setVisible(true)}>
+        <InfoWrapStyled>
+          <OrderDetails order={order} />
+        </InfoWrapStyled>
+        <FontAwesomeIcon icon={faChevronRight} size={14} />
+      </WrapStyled>
+      <OrderModal
+        order={order}
+        visible={visible}
+        onRequestClose={() => setVisible(false)}
+      />
+    </>
   );
 }
 
