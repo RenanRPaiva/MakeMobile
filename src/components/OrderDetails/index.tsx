@@ -84,22 +84,25 @@ export function OrderDetails({order, showService = false}: Props) {
               <ValorTextStyled>Valor</ValorTextStyled>
               <ValorTextStyled bold>R$ {order.makeValue}</ValorTextStyled>
             </View>
-            <ViewIconStyled>
-              {(order.status === OrderStatus.FINISHED && (
+
+            {(order.status === OrderStatus.FINISHED && (
+              <ViewIconStyled>
                 <FontAwesomeIcon
                   icon={faCheckCircle}
                   color="#128c7e"
                   size={25}
                 />
-              )) ||
-                (order.status === OrderStatus.REJECTED && (
+              </ViewIconStyled>
+            )) ||
+              (order.status === OrderStatus.REJECTED && (
+                <ViewIconStyled>
                   <FontAwesomeIcon
                     icon={faCircleXmark}
                     color="#f00"
                     size={25}
                   />
-                ))}
-            </ViewIconStyled>
+                </ViewIconStyled>
+              ))}
           </LinhaValor>
         </>
       )}
