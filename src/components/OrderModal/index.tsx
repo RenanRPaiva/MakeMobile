@@ -14,6 +14,7 @@ import {ActionButton} from './ActionButton';
 import Toast from 'react-native-toast-message';
 import {useAppDispatch} from '../../store/store';
 import {loadOrders} from '../../store/slices/ordersSlice';
+import {openMap} from '../../services/openMap';
 
 type Props = {
   order: Order;
@@ -75,7 +76,9 @@ export function OrderModal({order, visible, onRequestClose}: Props) {
             )}
             {order.status === OrderStatus.ACCEPTED && (
               <>
-                <ActionButton disabled={loading}>
+                <ActionButton
+                  disabled={loading}
+                  onPress={() => openMap(order.customerAddress)}>
                   Traçar rota para cliente
                 </ActionButton>
                 <ActionButton
