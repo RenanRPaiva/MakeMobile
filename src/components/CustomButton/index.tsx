@@ -30,8 +30,16 @@ export function CustomButton({
         styles[size],
         disabled ? styles.disableddanger : {},
       ]}
-      {...otherProps}>
-      {loading && <ActivityIndicator color="#FFF" style={styles.loading} />}
+      disabled={disabled}
+      {...otherProps}
+      testID="btn">
+      {loading && (
+        <ActivityIndicator
+          color="#FFF"
+          style={styles.loading}
+          testID="status"
+        />
+      )}
       <CustomText style={[styles.textBase, styles[`text${size}`]]}>
         {children}
       </CustomText>
